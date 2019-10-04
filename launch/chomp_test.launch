@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+	<!--visualization module-->
+	<!-- octomap server -->
+	<node pkg="octomap_server" type="octomap_tracking_server_node" name="octomap_talker" output="screen" args="$(find optim_traj_gen)/worlds/map3.bt"> 
+
+		<param name="resolution" value="0.25" />
+		<param name="frame_id" type="string" value="world" />
+		<param name="sensor_model/max_range" value="4.0" />
+		<param name="save_directory" value="$(optenv OCTOMAP_SAVE_DIR ./)" />
+		<param name="track_changes" value="true"/>
+		<param name="listen_changes" value="false"/>
+		<param name="topic_changes" value="/octomap_tracking_server/changeset" />
+		<!-- added by JBS -->
+		
+		<param name="height_map" value="false" />
+		
+		<param name="color/r" value="0.4" />
+		<param name="color/g" value="0.4" />
+		<param name="color/b" value="0.4" />
+		<param name="color/a" value="0.3" />
+		
+		<param name="occupancy_max_z" value="" />
+		<param name="occupancy_min_z" value="0.2" />
+		<param name="filter_ground" value="true" />
+		<param name="base_frame_id" value="/world" />
+		
+		<param name="min_change_pub" value="0" />
+	</node>
+	
+	<node pkg = "optim_traj_gen" type = "chomp_test_app" name = "chomp_test" output = "screen">
+              <rosparam command="load" file="$(find optim_traj_gen)/params/chomp_param_map3.yaml" />
+	</node>
+	 <!--visualization module-->
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find optim_traj_gen)/rviz/rviz.rviz"/>  
+
+</launch>
