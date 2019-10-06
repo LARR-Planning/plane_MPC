@@ -27,6 +27,7 @@
 #include <eigen3/Eigen/LU>
 #include <qpOASES.hpp>
 #include <numeric>
+#include <tf/transform_broadcaster.h>
 
 // linear regression 
 struct LinearModel{

@@ -188,7 +188,7 @@ geometry_msgs::Point chompTraj::evalute_point(ros::Time t){
 
 geometry_msgs::Point chompTraj::evalute_vel(double t){
 
-    double dt = 1e-3;
+    double dt = trajectory.first(2) - trajectory.first(1);
     double xdot = (evalute_point(t+dt).x - evalute_point(t).x)/dt;
     double ydot = (evalute_point(t+dt).y - evalute_point(t).y)/dt;
 
@@ -207,7 +207,7 @@ geometry_msgs::Point chompTraj::evalute_vel(ros::Time t){
 
 geometry_msgs::Point chompTraj::evalute_accel(double t){
 
-    double dt = 1e-3;
+    double dt = trajectory.first(2) - trajectory.first(1);
     double xddot = (evalute_vel(t+dt).x - evalute_vel(t).x)/dt;
     double yddot = (evalute_vel(t+dt).y - evalute_vel(t).y)/dt;
     
@@ -239,6 +239,9 @@ geometry_msgs::Twist chompTraj::evalute_input(double t){
 
     // linear input 
     input.linear.x = sqrt(pow(xdot,2) + pow(ydot,2));    
+    
+    // printf("xddot / yddot : [%f,%f]\n",xddot,yddot);
+
     // angular input 
     if (input.linear.x > 1e-4)
         input.angular.z = (yddot * xdot - xddot * ydot)/(pow(xdot,2) + pow(ydot,2));

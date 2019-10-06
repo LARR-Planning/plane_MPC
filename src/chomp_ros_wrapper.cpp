@@ -19,6 +19,8 @@ Wrapper::Wrapper(const ros::NodeHandle& nh_global):nh("~"){
 
 
     nh.param<string>("world_frame_id",world_frame_id,"/world");    
+    nh.param<string>("desired_frame_id",desired_frame_id,"/vehicle_desired");    
+
     pub_path_cur_solution = nh.advertise<nav_msgs::Path>("predictor/chomp_solution_path",1);
     pub_vis_problem = nh.advertise<visualization_msgs::MarkerArray>("optim_traj_gen/cur_problem",1);
     pub_marker_pnts_path = nh.advertise<visualization_msgs::Marker>("optim_traj_gen/chomp_sol_pnts",1);
@@ -325,7 +327,8 @@ void Wrapper::publish_routine(){
         geometry_msgs::Point eval_vel = recent_optim_result.chomp_traj.evalute_vel((eval_t - t_ref).toSec());
         geometry_msgs::Twist eval_input = recent_optim_result.chomp_traj.evalute_input((eval_t - t_ref).toSec());  
         geometry_msgs::TwistStamped eval_input_stamp;
-        eval_input_stamp.header.frame_id = world_frame_id; eval_input_stamp.twist = eval_input; 
+        eval_input_stamp.header.frame_id = desired_frame_id; eval_input_stamp.twist = eval_input; 
+        eval_input_stamp.twist = eval_input;
         printf("[CHOMP] (v,w) = (%f,%f) \n",eval_input.linear.x,eval_input.angular.z);
          
         // desired input (v,w) publish
@@ -341,6 +344,12 @@ void Wrapper::publish_routine(){
         eval_poseStamped.pose.orientation.w = q.getW();
         pub_cur_control_pose.publish(eval_poseStamped);
         pub_cur_control_input.publish(eval_input_stamp);
+
+        // desired transform publish. The tf will be used as referance frame for twist stamped
+        tf::Transform transform;
+        transform.setRotation(q);
+        transform.setOrigin(tf::Vector3(eval_pnt.x,eval_pnt.y,eval_pnt.z));
+        tf_br.sendTransform(tf::StampedTransform(transform,ros::Time::now(),world_frame_id,desired_frame_id));
 
     }
     // esdf publish 

@@ -13,12 +13,14 @@ namespace CHOMP{
             ros::NodeHandle nh;
             nav_msgs::Path current_path;
             string world_frame_id;
+            string desired_frame_id;
 
             ros::Publisher pub_path_cur_solution; // publisher for path 
             ros::Publisher pub_vis_problem; // corridor  
             ros::Publisher pub_marker_pnts_path; // pnts on the path 
             ros::Publisher pub_cur_control_pose; // evaluated point at the current time (x_d(t) y_d(t)) 
             ros::Publisher pub_cur_control_input; // evaluated point at the current time (v_d(t) w_d(t)) 
+            tf::TransformBroadcaster tf_br; // the desired frame will be broadcast 
 
             visualization_msgs::Marker pnts_on_path_marker;
             
