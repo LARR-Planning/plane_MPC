@@ -133,8 +133,8 @@ visualization_msgs::MarkerArray Corridor2D::get_corridor_markers(string world_fr
 
 /**
  * @brief fill chomp trajectory struct with necessary information 
- * @param t0 
- * @param tf 
+ * @param t0 : value = t0_raw - t_ref (for numerical stability)
+ * @param tf : value = tf_raw - t_ref (for numerical stability)
  */
 void OptimResult::complete_solution(double t0,double tf,double height){
 
@@ -158,7 +158,7 @@ void OptimResult::complete_solution(double t0,double tf,double height){
 /**
  * @brief evalute point given t 
  * 
- * @param t 
+ * @param t : value = t0_raw - t_ref (for numerical stability) 
  * @return geometry_msgs::PointStamped 
  */
 geometry_msgs::Point chompTraj::evalute_point(double t){
@@ -188,7 +188,7 @@ geometry_msgs::Point chompTraj::evalute_point(ros::Time t){
 
 geometry_msgs::Point chompTraj::evalute_vel(double t){
 
-    double dt = 1e-2;
+    double dt = 1e-3;
     double xdot = (evalute_point(t+dt).x - evalute_point(t).x)/dt;
     double ydot = (evalute_point(t+dt).y - evalute_point(t).y)/dt;
 
@@ -207,7 +207,7 @@ geometry_msgs::Point chompTraj::evalute_vel(ros::Time t){
 
 geometry_msgs::Point chompTraj::evalute_accel(double t){
 
-    double dt = 1e-2;
+    double dt = 1e-3;
     double xddot = (evalute_vel(t+dt).x - evalute_vel(t).x)/dt;
     double yddot = (evalute_vel(t+dt).y - evalute_vel(t).y)/dt;
     
@@ -234,13 +234,19 @@ geometry_msgs::Twist chompTraj::evalute_input(double t){
 
     double xddot = evalute_accel(t).x;
     double yddot = evalute_accel(t).y;
-
+     
     geometry_msgs::Twist input; 
-    
+
     // linear input 
     input.linear.x = sqrt(pow(xdot,2) + pow(ydot,2));    
     // angular input 
-    input.angular.z = (yddot * xdot - xddot * ydot)/(pow(xdot,2) + pow(ydot,2));
+    if (input.linear.x > 1e-4)
+        input.angular.z = (yddot * xdot - xddot * ydot)/(pow(xdot,2) + pow(ydot,2));
+    else{    
+        input.angular.z = 0.0 ;    
+        ROS_WARN("[CHOMP] linear velocity is almost zero. angular velocity is set as zero. Does the car reached goal?");
+    }
+    
     return input; 
 };
 

@@ -17,7 +17,8 @@ namespace CHOMP{
             ros::Publisher pub_path_cur_solution; // publisher for path 
             ros::Publisher pub_vis_problem; // corridor  
             ros::Publisher pub_marker_pnts_path; // pnts on the path 
-            ros::Publisher pub_cur_control_point; // evaluated point at the current time (x_d(t) y_d(t)) 
+            ros::Publisher pub_cur_control_pose; // evaluated point at the current time (x_d(t) y_d(t)) 
+            ros::Publisher pub_cur_control_input; // evaluated point at the current time (v_d(t) w_d(t)) 
 
             visualization_msgs::Marker pnts_on_path_marker;
             
@@ -53,6 +54,7 @@ namespace CHOMP{
 
 
         public:
+            ros::Time t_ref; 
             OptimResult recent_optim_result; // recent optimization result 
 
             int map_type; // 0 = octomap, 1 = voxblox 

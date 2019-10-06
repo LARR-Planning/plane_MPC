@@ -168,9 +168,9 @@ struct OptimResult{
 // components of one chomp problem 
 struct OptimProblem{
     geometry_msgs::Point start;
-    ros::Time t0;
+    ros::Time t0; // raw ros_time 
     geometry_msgs::Point goal;
-    ros::Time tf;
+    ros::Time tf; // raw ros_time 
     Corridor2D corridor;
     VectorXd get_initial_guess();
     visualization_msgs::MarkerArray get_markers(string world_frame_id);

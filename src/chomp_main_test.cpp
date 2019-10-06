@@ -11,6 +11,7 @@ int main(int argc, char** argv){
     ros::Time t_sim_start = ros::Time::now();
 
     ROS_INFO("[CHOMP] optim_traj_gen initialized. Referance time is : %d",t_sim_start.toSec());
+    chomp_wrapper.t_ref = t_sim_start;     
     
     // load octomap first 
     string file_name;
@@ -34,26 +35,29 @@ int main(int argc, char** argv){
     box2.xl = 4.0; box2.yl = 1.5; box2.xu = 5.0; box2.yu = 3.5; box_seq.push_back(box2);
     box3.xl = 4.0; box3.yl = 3.0; box3.xu = 5.5; box3.yu = 5.5; box_seq.push_back(box3);
 
-    int N1,N2,N3; N1 = 6,N2 = 7, N3 = 9;    
+    int N1,N2,N3; N1 = 8,N2 = 9, N3 = 10;    
     box_alloc_seq.push_back(N1);
     box_alloc_seq.push_back(N2);
     box_alloc_seq.push_back(N3);
-    
+
 
     // 2.  define chomp problem at this time  
-    double t0 = (ros::Time::now()-t_sim_start).toSec();  double H = 10;
-    double tf = t0 + H; 
+    ros::Time t0 = ros::Time::now();  ros::Duration H(10);
+    ros::Time tf = t0 + H; 
 
     Corridor2D sample_corridor(box_seq,box_alloc_seq,corridor_height); // corridor 
     geometry_msgs::Point start;  start.x = 3.5; start.y = 0.5; // start 
     geometry_msgs::Point goal; goal.x = 5; goal.y = 5; // goal 
 
+    // problem construction 
     CHOMP::OptimProblem chomp_problem;
     chomp_problem.corridor = sample_corridor;
     chomp_problem.start = start; 
     chomp_problem.goal= goal; 
-
-    // trajectory generation callback 
+    chomp_problem.t0 = t0;  
+    chomp_problem.tf = tf;
+    
+    // trajectory generation  
     chomp_wrapper.optim_traj_gen(chomp_problem);
 
 

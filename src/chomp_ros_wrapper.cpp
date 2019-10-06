@@ -22,7 +22,8 @@ Wrapper::Wrapper(const ros::NodeHandle& nh_global):nh("~"){
     pub_path_cur_solution = nh.advertise<nav_msgs::Path>("predictor/chomp_solution_path",1);
     pub_vis_problem = nh.advertise<visualization_msgs::MarkerArray>("optim_traj_gen/cur_problem",1);
     pub_marker_pnts_path = nh.advertise<visualization_msgs::Marker>("optim_traj_gen/chomp_sol_pnts",1);
-    pub_cur_control_point = nh.advertise<geometry_msgs::PointStamped>("optim_traj_gen/chomp_cur_eval_pnt",1);
+    pub_cur_control_pose = nh.advertise<geometry_msgs::PoseStamped>("optim_traj_gen/chomp_cur_eval_pnt",1);
+    pub_cur_control_input = nh.advertise<geometry_msgs::TwistStamped>("optim_traj_gen/chomp_cur_input",1);
 
     nh.param("is_voxblox_pub",is_voxblox_pub,false);
 
@@ -276,8 +277,8 @@ void Wrapper::solve_chomp(VectorXd x0){
     
     // to make the path as trajectory 
     double t0,tf; 
-    t0 = cur_problem.t0.toSec(); tf = cur_problem.tf.toSec();
-    recent_optim_result.complete_solution(t0,tf,cur_problem.corridor.height);
+    t0 = (cur_problem.t0-t_ref).toSec(); tf = (cur_problem.tf-t_ref).toSec(); // 
+    recent_optim_result.complete_solution(t0,tf,cur_problem.corridor.height); // 
 
     // if solved, 
     VectorXd x_sol = recent_optim_result.solution_raw;
@@ -314,18 +315,32 @@ void Wrapper::publish_routine(){
         pub_vis_problem.publish(cur_problem.get_markers(world_frame_id));
     // if it is solved 
     if(is_solved){
-        // solved path 
+        // solved path publish
         pub_path_cur_solution.publish(current_path);        
         pub_marker_pnts_path.publish(pnts_on_path_marker);
         
-        // input and point publish 
+        // desired pose publish 
         ros::Time eval_t = ros::Time::now();
-        geometry_msgs::Point eval_pnt = recent_optim_result.chomp_traj.evalute_point(eval_t);
-        geometry_msgs::PointStamped eval_pntStamped; 
-        eval_pntStamped.header.frame_id = world_frame_id;
-        eval_pntStamped.header.stamp = ros::Time::now();
-        eval_pntStamped.point = eval_pnt;
-        pub_cur_control_point.publish(eval_pntStamped);
+        geometry_msgs::Point eval_pnt = recent_optim_result.chomp_traj.evalute_point((eval_t - t_ref).toSec());
+        geometry_msgs::Point eval_vel = recent_optim_result.chomp_traj.evalute_vel((eval_t - t_ref).toSec());
+        geometry_msgs::Twist eval_input = recent_optim_result.chomp_traj.evalute_input((eval_t - t_ref).toSec());  
+        geometry_msgs::TwistStamped eval_input_stamp;
+        eval_input_stamp.header.frame_id = world_frame_id; eval_input_stamp.twist = eval_input; 
+        printf("[CHOMP] (v,w) = (%f,%f) \n",eval_input.linear.x,eval_input.angular.z);
+         
+        // desired input (v,w) publish
+        geometry_msgs::PoseStamped eval_poseStamped; 
+        eval_poseStamped.header.frame_id = world_frame_id;
+        eval_poseStamped.header.stamp = ros::Time::now();
+        eval_poseStamped.pose.position = eval_pnt;
+        double target_yaw = atan2(eval_vel.y,eval_vel.x);
+        tf::Quaternion q; q.setRPY(0,0,target_yaw);
+        eval_poseStamped.pose.orientation.x = q.getX();
+        eval_poseStamped.pose.orientation.y = q.getY();
+        eval_poseStamped.pose.orientation.z = q.getZ();
+        eval_poseStamped.pose.orientation.w = q.getW();
+        pub_cur_control_pose.publish(eval_poseStamped);
+        pub_cur_control_input.publish(eval_input_stamp);
 
     }
     // esdf publish 
@@ -354,6 +369,8 @@ MatrixXd Wrapper::get_current_prediction_path(){
 
     }else    
         cerr<<"No prediction path loaded"<<endl;
+
+
         
     return prediction_path;     
 }
