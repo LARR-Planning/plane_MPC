@@ -1,0 +1,218 @@
+\hypertarget{struct_c_h_o_m_p_1_1chomp_traj}{}\section{C\+H\+O\+MP\+:\+:chomp\+Traj Struct Reference}
+\label{struct_c_h_o_m_p_1_1chomp_traj}\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+
+
+{\ttfamily \#include $<$chomp\+\_\+base.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_aeb9cc74d96a0987aedb24f63f2379b9c}{evalute\+\_\+point} (double t)
+\begin{DoxyCompactList}\small\item\em evalute point given t \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_a9b90e0757101e2e9bc380a3f549f901c}{evalute\+\_\+point} (ros\+::\+Time t)
+\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_aa1772f8c0bf9980a52c2af99f740f0c7}{evalute\+\_\+vel} (double t)
+\begin{DoxyCompactList}\small\item\em evalute velocity given t \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_a396ab40dcdfc6be5cb74cec2477c6da7}{evalute\+\_\+vel} (ros\+::\+Time t)
+\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_aeeb63745ee2d7401d099d2c2a567860b}{evalute\+\_\+accel} (double t)
+\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_a0b8e221d9ea00e079f230da48a611dc7}{evalute\+\_\+accel} (ros\+::\+Time t)
+\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_a591e7b3e6409be82a8bb8eab41d6b994}{evalute\+\_\+input} (double t)
+\begin{DoxyCompactList}\small\item\em return (v,w) based on differential flatness \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_a5e13ed1fa93221e42b53fac1e044d739}{evalute\+\_\+input} (ros\+::\+Time t)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_ac021a6dcd1a736ebff7e57ae1cde4740}{is\+\_\+solved} = false
+\item 
+\hyperlink{namespace_c_h_o_m_p_a0abd9a9d13db01779c2aad6ed4bf3d40}{Traj2D} \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_a919968416f3d320d984ae15059e14073}{trajectory}
+\item 
+double \hyperlink{struct_c_h_o_m_p_1_1chomp_traj_a2f06c0351731d9bb31679d66fd0b4423}{height}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 67 of file chomp\+\_\+base.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!evalute\+\_\+accel@{evalute\+\_\+accel}}
+\index{evalute\+\_\+accel@{evalute\+\_\+accel}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{evalute\+\_\+accel(double t)}{evalute_accel(double t)}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Point chomp\+Traj\+::evalute\+\_\+accel (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_aeeb63745ee2d7401d099d2c2a567860b}{}\label{struct_c_h_o_m_p_1_1chomp_traj_aeeb63745ee2d7401d099d2c2a567860b}
+
+
+Definition at line 208 of file chomp\+\_\+base.\+cpp.
+
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!evalute\+\_\+accel@{evalute\+\_\+accel}}
+\index{evalute\+\_\+accel@{evalute\+\_\+accel}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{evalute\+\_\+accel(ros\+::\+Time t)}{evalute_accel(ros::Time t)}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Point C\+H\+O\+M\+P\+::chomp\+Traj\+::evalute\+\_\+accel (
+\begin{DoxyParamCaption}
+\item[{ros\+::\+Time}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_a0b8e221d9ea00e079f230da48a611dc7}{}\label{struct_c_h_o_m_p_1_1chomp_traj_a0b8e221d9ea00e079f230da48a611dc7}
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!evalute\+\_\+input@{evalute\+\_\+input}}
+\index{evalute\+\_\+input@{evalute\+\_\+input}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{evalute\+\_\+input(double t)}{evalute_input(double t)}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist chomp\+Traj\+::evalute\+\_\+input (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_a591e7b3e6409be82a8bb8eab41d6b994}{}\label{struct_c_h_o_m_p_1_1chomp_traj_a591e7b3e6409be82a8bb8eab41d6b994}
+
+
+return (v,w) based on differential flatness 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & evaluation time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+geometry\+\_\+msgs\+::\+Twist (v,w) 
+\end{DoxyReturn}
+
+
+Definition at line 230 of file chomp\+\_\+base.\+cpp.
+
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!evalute\+\_\+input@{evalute\+\_\+input}}
+\index{evalute\+\_\+input@{evalute\+\_\+input}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{evalute\+\_\+input(ros\+::\+Time t)}{evalute_input(ros::Time t)}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist chomp\+Traj\+::evalute\+\_\+input (
+\begin{DoxyParamCaption}
+\item[{ros\+::\+Time}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_a5e13ed1fa93221e42b53fac1e044d739}{}\label{struct_c_h_o_m_p_1_1chomp_traj_a5e13ed1fa93221e42b53fac1e044d739}
+
+
+Definition at line 247 of file chomp\+\_\+base.\+cpp.
+
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!evalute\+\_\+point@{evalute\+\_\+point}}
+\index{evalute\+\_\+point@{evalute\+\_\+point}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{evalute\+\_\+point(double t)}{evalute_point(double t)}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Point chomp\+Traj\+::evalute\+\_\+point (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_aeb9cc74d96a0987aedb24f63f2379b9c}{}\label{struct_c_h_o_m_p_1_1chomp_traj_aeb9cc74d96a0987aedb24f63f2379b9c}
+
+
+evalute point given t 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+geometry\+\_\+msgs\+::\+Point\+Stamped 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file chomp\+\_\+base.\+cpp.
+
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{struct_c_h_o_m_p_1_1chomp_traj_aeb9cc74d96a0987aedb24f63f2379b9c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_c_h_o_m_p_1_1chomp_traj_aeb9cc74d96a0987aedb24f63f2379b9c_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!evalute\+\_\+point@{evalute\+\_\+point}}
+\index{evalute\+\_\+point@{evalute\+\_\+point}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{evalute\+\_\+point(ros\+::\+Time t)}{evalute_point(ros::Time t)}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Point chomp\+Traj\+::evalute\+\_\+point (
+\begin{DoxyParamCaption}
+\item[{ros\+::\+Time}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_a9b90e0757101e2e9bc380a3f549f901c}{}\label{struct_c_h_o_m_p_1_1chomp_traj_a9b90e0757101e2e9bc380a3f549f901c}
+
+
+Definition at line 178 of file chomp\+\_\+base.\+cpp.
+
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!evalute\+\_\+vel@{evalute\+\_\+vel}}
+\index{evalute\+\_\+vel@{evalute\+\_\+vel}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{evalute\+\_\+vel(double t)}{evalute_vel(double t)}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Point chomp\+Traj\+::evalute\+\_\+vel (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_aa1772f8c0bf9980a52c2af99f740f0c7}{}\label{struct_c_h_o_m_p_1_1chomp_traj_aa1772f8c0bf9980a52c2af99f740f0c7}
+
+
+evalute velocity given t 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+geometry\+\_\+msgs\+::\+Point (no other option.. to represent velocity) 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file chomp\+\_\+base.\+cpp.
+
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!evalute\+\_\+vel@{evalute\+\_\+vel}}
+\index{evalute\+\_\+vel@{evalute\+\_\+vel}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{evalute\+\_\+vel(ros\+::\+Time t)}{evalute_vel(ros::Time t)}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Point chomp\+Traj\+::evalute\+\_\+vel (
+\begin{DoxyParamCaption}
+\item[{ros\+::\+Time}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_a396ab40dcdfc6be5cb74cec2477c6da7}{}\label{struct_c_h_o_m_p_1_1chomp_traj_a396ab40dcdfc6be5cb74cec2477c6da7}
+
+
+Definition at line 202 of file chomp\+\_\+base.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!height@{height}}
+\index{height@{height}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{height}{height}}]{\setlength{\rightskip}{0pt plus 5cm}double C\+H\+O\+M\+P\+::chomp\+Traj\+::height}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_a2f06c0351731d9bb31679d66fd0b4423}{}\label{struct_c_h_o_m_p_1_1chomp_traj_a2f06c0351731d9bb31679d66fd0b4423}
+
+
+Definition at line 71 of file chomp\+\_\+base.\+h.
+
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!is\+\_\+solved@{is\+\_\+solved}}
+\index{is\+\_\+solved@{is\+\_\+solved}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{is\+\_\+solved}{is_solved}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+H\+O\+M\+P\+::chomp\+Traj\+::is\+\_\+solved = false}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_ac021a6dcd1a736ebff7e57ae1cde4740}{}\label{struct_c_h_o_m_p_1_1chomp_traj_ac021a6dcd1a736ebff7e57ae1cde4740}
+
+
+Definition at line 69 of file chomp\+\_\+base.\+h.
+
+\index{C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}!trajectory@{trajectory}}
+\index{trajectory@{trajectory}!C\+H\+O\+M\+P\+::chomp\+Traj@{C\+H\+O\+M\+P\+::chomp\+Traj}}
+\subsubsection[{\texorpdfstring{trajectory}{trajectory}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Traj2D} C\+H\+O\+M\+P\+::chomp\+Traj\+::trajectory}\hypertarget{struct_c_h_o_m_p_1_1chomp_traj_a919968416f3d320d984ae15059e14073}{}\label{struct_c_h_o_m_p_1_1chomp_traj_a919968416f3d320d984ae15059e14073}
+
+
+Definition at line 70 of file chomp\+\_\+base.\+h.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/optim\+\_\+traj\+\_\+gen/\hyperlink{chomp__base_8h}{chomp\+\_\+base.\+h}\item 
+src/\hyperlink{chomp__base_8cpp}{chomp\+\_\+base.\+cpp}\end{DoxyCompactItemize}

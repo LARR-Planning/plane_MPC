@@ -1,0 +1,9 @@
+<map id="CHOMP::Wrapper::set_problem" name="CHOMP::Wrapper::set_problem">
+<area shape="rect" id="node2" href="$class_c_h_o_m_p_1_1_solver.html#a4ec3935b51f1c2a6964d4bac4c2d7fb5" title="CHOMP::Solver::set\l_problem" alt="" coords="218,5,361,47"/>
+<area shape="rect" id="node3" href="$struct_c_h_o_m_p_1_1_optim_problem.html#a028195837b86f290b121936e604ad3c7" title="CHOMP::OptimProblem\l::get_initial_guess" alt="" coords="208,71,371,112"/>
+<area shape="rect" id="node5" href="$class_c_h_o_m_p_1_1_solver.html#abd3643203f287d3fb7e5b42087366272" title="CHOMP::Solver::solve" alt="" coords="211,137,367,163"/>
+<area shape="rect" id="node7" href="$class_c_h_o_m_p_1_1_solver.html#aa22be35108ac90fe746060b6822c3a31" title="modified optimization solving routine " alt="" coords="208,187,371,214"/>
+<area shape="rect" id="node8" href="$struct_c_h_o_m_p_1_1_optim_result.html#af509b689c6959cbbddde7f9599ce583b" title="fill chomp trajectory struct with necessary information " alt="" coords="213,239,366,280"/>
+<area shape="rect" id="node4" href="$chomp__utils_8h.html#a0fa75528fdd2f1dc601c4d4e7da6a6b0" title="interpolate" alt="" coords="440,78,523,105"/>
+<area shape="rect" id="node6" href="$namespace_c_h_o_m_p.html#a9bad24cb034b15bee2e6af23efda98f4" title="CHOMP::solveqp" alt="" coords="419,137,544,163"/>
+</map>

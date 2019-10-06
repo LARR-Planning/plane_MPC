@@ -1,15 +1,17 @@
 #include <optim_traj_gen/chomp_ros_wrapper.h>
-
 /**
  * @brief test the wrapper routine with sample map  
  */
+using namespace CHOMP;
 int main(int argc, char** argv){
 
     ros::init(argc,argv,"chomp_test"); 
     ros::NodeHandle nh("~");
     CHOMP::Wrapper chomp_wrapper(nh); 
+    ros::Time t_sim_start = ros::Time::now();
 
-
+    ROS_INFO("[CHOMP] optim_traj_gen initialized. Referance time is : %d",t_sim_start.toSec());
+    
     // load octomap first 
     string file_name;
     nh.param<string>("map_file_name",file_name,"/home/jbs/catkin_ws/src/optim_traj_gen/worlds/map3.bt");
@@ -37,7 +39,11 @@ int main(int argc, char** argv){
     box_alloc_seq.push_back(N2);
     box_alloc_seq.push_back(N3);
     
-    // 2.  define chomp problem 
+
+    // 2.  define chomp problem at this time  
+    double t0 = (ros::Time::now()-t_sim_start).toSec();  double H = 10;
+    double tf = t0 + H; 
+
     Corridor2D sample_corridor(box_seq,box_alloc_seq,corridor_height); // corridor 
     geometry_msgs::Point start;  start.x = 3.5; start.y = 0.5; // start 
     geometry_msgs::Point goal; goal.x = 5; goal.y = 5; // goal 
@@ -49,7 +55,7 @@ int main(int argc, char** argv){
 
     // trajectory generation callback 
     chomp_wrapper.optim_traj_gen(chomp_problem);
-    
+
 
     ros::Rate rate(30);
 

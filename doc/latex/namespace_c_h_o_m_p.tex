@@ -1,0 +1,117 @@
+\hypertarget{namespace_c_h_o_m_p}{}\section{C\+H\+O\+MP Namespace Reference}
+\label{namespace_c_h_o_m_p}\index{C\+H\+O\+MP@{C\+H\+O\+MP}}
+
+
+This script solves the \hyperlink{namespace_c_h_o_m_p}{C\+H\+O\+MP} programming \+: 1/2 x\textquotesingle{}Mx + hx + f(x) This requires evaluation function for f(x) and grad\+\_\+f(x) as a function pointer and other parameter.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_box_constraint2_d}{Box\+Constraint2D}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1chomp_traj}{chomp\+Traj}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_corridor2_d}{Corridor2D}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_cost_param}{Cost\+Param}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_linear_inequality_constraint}{Linear\+Inequality\+Constraint}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_optim_grad}{Optim\+Grad}
+\begin{DoxyCompactList}\small\item\em gradient containing prior and nonlinear together \end{DoxyCompactList}\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_optim_info}{Optim\+Info}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_optim_param}{Optim\+Param}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_optim_problem}{Optim\+Problem}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_optim_result}{Optim\+Result}
+\item 
+struct \hyperlink{struct_c_h_o_m_p_1_1_q_p__form}{Q\+P\+\_\+form}
+\item 
+class \hyperlink{class_c_h_o_m_p_1_1shaping__functor}{shaping\+\_\+functor}
+\begin{DoxyCompactList}\small\item\em Functor for shaping function from distance\+\_\+raw. \end{DoxyCompactList}\item 
+class \hyperlink{class_c_h_o_m_p_1_1shaping__functor__grad}{shaping\+\_\+functor\+\_\+grad}
+\begin{DoxyCompactList}\small\item\em gradient of shaping function \end{DoxyCompactList}\item 
+class \hyperlink{class_c_h_o_m_p_1_1_solver}{Solver}
+\item 
+class \hyperlink{class_c_h_o_m_p_1_1_wrapper}{Wrapper}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef vector$<$ int $>$ \hyperlink{namespace_c_h_o_m_p_a6298f24189753c6beb564a683b476dfa}{Box\+Alloc\+Seq}
+\item 
+typedef vector$<$ \hyperlink{struct_c_h_o_m_p_1_1_box_constraint2_d}{Box\+Constraint2D} $>$ \hyperlink{namespace_c_h_o_m_p_a5617d377fed76f42088e4a508212a126}{Box\+Constraint\+Seq}
+\item 
+typedef pair$<$ Vector\+Xd, Vector\+Xd $>$ \hyperlink{namespace_c_h_o_m_p_ad75f17b7623b832899ac7d2bd727e90e}{Path2D}
+\item 
+typedef pair$<$ Vector\+Xd, \hyperlink{namespace_c_h_o_m_p_ad75f17b7623b832899ac7d2bd727e90e}{Path2D} $>$ \hyperlink{namespace_c_h_o_m_p_a0abd9a9d13db01779c2aad6ed4bf3d40}{Traj2D}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Vector\+Xd \hyperlink{namespace_c_h_o_m_p_a9bad24cb034b15bee2e6af23efda98f4}{solveqp} (\hyperlink{struct_c_h_o_m_p_1_1_q_p__form}{Q\+P\+\_\+form} qp\+\_\+prob, bool \&is\+\_\+ok)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This script solves the \hyperlink{namespace_c_h_o_m_p}{C\+H\+O\+MP} programming \+: 1/2 x\textquotesingle{}Mx + hx + f(x) This requires evaluation function for f(x) and grad\+\_\+f(x) as a function pointer and other parameter. 
+
+\subsection{Typedef Documentation}
+\index{C\+H\+O\+MP@{C\+H\+O\+MP}!Box\+Alloc\+Seq@{Box\+Alloc\+Seq}}
+\index{Box\+Alloc\+Seq@{Box\+Alloc\+Seq}!C\+H\+O\+MP@{C\+H\+O\+MP}}
+\subsubsection[{\texorpdfstring{Box\+Alloc\+Seq}{BoxAllocSeq}}]{\setlength{\rightskip}{0pt plus 5cm}typedef vector$<$int$>$ {\bf C\+H\+O\+M\+P\+::\+Box\+Alloc\+Seq}}\hypertarget{namespace_c_h_o_m_p_a6298f24189753c6beb564a683b476dfa}{}\label{namespace_c_h_o_m_p_a6298f24189753c6beb564a683b476dfa}
+T\+Y\+P\+E\+D\+EF 
+
+Definition at line 50 of file chomp\+\_\+base.\+h.
+
+\index{C\+H\+O\+MP@{C\+H\+O\+MP}!Box\+Constraint\+Seq@{Box\+Constraint\+Seq}}
+\index{Box\+Constraint\+Seq@{Box\+Constraint\+Seq}!C\+H\+O\+MP@{C\+H\+O\+MP}}
+\subsubsection[{\texorpdfstring{Box\+Constraint\+Seq}{BoxConstraintSeq}}]{\setlength{\rightskip}{0pt plus 5cm}typedef vector$<${\bf Box\+Constraint2D}$>$ {\bf C\+H\+O\+M\+P\+::\+Box\+Constraint\+Seq}}\hypertarget{namespace_c_h_o_m_p_a5617d377fed76f42088e4a508212a126}{}\label{namespace_c_h_o_m_p_a5617d377fed76f42088e4a508212a126}
+
+
+Definition at line 51 of file chomp\+\_\+base.\+h.
+
+\index{C\+H\+O\+MP@{C\+H\+O\+MP}!Path2D@{Path2D}}
+\index{Path2D@{Path2D}!C\+H\+O\+MP@{C\+H\+O\+MP}}
+\subsubsection[{\texorpdfstring{Path2D}{Path2D}}]{\setlength{\rightskip}{0pt plus 5cm}typedef pair$<$Vector\+Xd,Vector\+Xd$>$ {\bf C\+H\+O\+M\+P\+::\+Path2D}}\hypertarget{namespace_c_h_o_m_p_ad75f17b7623b832899ac7d2bd727e90e}{}\label{namespace_c_h_o_m_p_ad75f17b7623b832899ac7d2bd727e90e}
+
+
+Definition at line 52 of file chomp\+\_\+base.\+h.
+
+\index{C\+H\+O\+MP@{C\+H\+O\+MP}!Traj2D@{Traj2D}}
+\index{Traj2D@{Traj2D}!C\+H\+O\+MP@{C\+H\+O\+MP}}
+\subsubsection[{\texorpdfstring{Traj2D}{Traj2D}}]{\setlength{\rightskip}{0pt plus 5cm}typedef pair$<$Vector\+Xd,{\bf Path2D}$>$ {\bf C\+H\+O\+M\+P\+::\+Traj2D}}\hypertarget{namespace_c_h_o_m_p_a0abd9a9d13db01779c2aad6ed4bf3d40}{}\label{namespace_c_h_o_m_p_a0abd9a9d13db01779c2aad6ed4bf3d40}
+
+
+Definition at line 53 of file chomp\+\_\+base.\+h.
+
+
+
+\subsection{Function Documentation}
+\index{C\+H\+O\+MP@{C\+H\+O\+MP}!solveqp@{solveqp}}
+\index{solveqp@{solveqp}!C\+H\+O\+MP@{C\+H\+O\+MP}}
+\subsubsection[{\texorpdfstring{solveqp(\+Q\+P\+\_\+form qp\+\_\+prob, bool \&is\+\_\+ok)}{solveqp(QP_form qp_prob, bool &is_ok)}}]{\setlength{\rightskip}{0pt plus 5cm}Vector\+Xd C\+H\+O\+M\+P\+::solveqp (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+P\+\_\+form}}]{qp\+\_\+prob, }
+\item[{bool \&}]{is\+\_\+ok}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_c_h_o_m_p_a9bad24cb034b15bee2e6af23efda98f4}{}\label{namespace_c_h_o_m_p_a9bad24cb034b15bee2e6af23efda98f4}
+
+
+Definition at line 6 of file chomp\+\_\+base.\+cpp.
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_c_h_o_m_p_a9bad24cb034b15bee2e6af23efda98f4_icgraph}
+\end{center}
+\end{figure}
+
+

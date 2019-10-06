@@ -1,0 +1,11 @@
+<map id="CHOMP::Wrapper::get_ground_height" name="CHOMP::Wrapper::get_ground_height">
+<area shape="rect" id="node2" href="$class_c_h_o_m_p_1_1_wrapper.html#a8139b6a0cb0c1dc44535677ef142d16a" title="generate optimal trajectory given corridor structure and (start,goal) " alt="" coords="208,129,377,171"/>
+<area shape="rect" id="node3" href="$class_c_h_o_m_p_1_1_wrapper.html#a3a902fb1c00fadb388a1728613a06a10" title="CHOMP::Wrapper::set\l_problem" alt="" coords="425,129,580,171"/>
+<area shape="rect" id="node4" href="$class_c_h_o_m_p_1_1_solver.html#a4ec3935b51f1c2a6964d4bac4c2d7fb5" title="CHOMP::Solver::set\l_problem" alt="" coords="638,5,781,47"/>
+<area shape="rect" id="node5" href="$struct_c_h_o_m_p_1_1_optim_problem.html#a028195837b86f290b121936e604ad3c7" title="CHOMP::OptimProblem\l::get_initial_guess" alt="" coords="628,71,791,112"/>
+<area shape="rect" id="node7" href="$class_c_h_o_m_p_1_1_solver.html#abd3643203f287d3fb7e5b42087366272" title="CHOMP::Solver::solve" alt="" coords="631,137,787,163"/>
+<area shape="rect" id="node9" href="$class_c_h_o_m_p_1_1_solver.html#aa22be35108ac90fe746060b6822c3a31" title="modified optimization solving routine " alt="" coords="628,187,791,214"/>
+<area shape="rect" id="node10" href="$struct_c_h_o_m_p_1_1_optim_result.html#af509b689c6959cbbddde7f9599ce583b" title="fill chomp trajectory struct with necessary information " alt="" coords="633,239,786,280"/>
+<area shape="rect" id="node6" href="$chomp__utils_8h.html#a0fa75528fdd2f1dc601c4d4e7da6a6b0" title="interpolate" alt="" coords="860,78,943,105"/>
+<area shape="rect" id="node8" href="$namespace_c_h_o_m_p.html#a9bad24cb034b15bee2e6af23efda98f4" title="CHOMP::solveqp" alt="" coords="839,137,964,163"/>
+</map>

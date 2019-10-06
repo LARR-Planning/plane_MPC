@@ -22,6 +22,7 @@ Wrapper::Wrapper(const ros::NodeHandle& nh_global):nh("~"){
     pub_path_cur_solution = nh.advertise<nav_msgs::Path>("predictor/chomp_solution_path",1);
     pub_vis_problem = nh.advertise<visualization_msgs::MarkerArray>("optim_traj_gen/cur_problem",1);
     pub_marker_pnts_path = nh.advertise<visualization_msgs::Marker>("optim_traj_gen/chomp_sol_pnts",1);
+    pub_cur_control_point = nh.advertise<geometry_msgs::PointStamped>("optim_traj_gen/chomp_cur_eval_pnt",1);
 
     nh.param("is_voxblox_pub",is_voxblox_pub,false);
 
@@ -268,13 +269,18 @@ void Wrapper::solve_chomp(VectorXd x0){
             recent_optim_result = solver.solve2(x0,optim_param);
     else
         if (map_type == 0)
-            recent_optim_result = solver.solve(recent_optim_result.solution,optim_param);    
+            recent_optim_result = solver.solve(recent_optim_result.solution_raw,optim_param);    
         else
-            recent_optim_result = solver.solve2(recent_optim_result.solution,optim_param);
-
+            recent_optim_result = solver.solve2(recent_optim_result.solution_raw,optim_param);
+    
+    
+    // to make the path as trajectory 
+    double t0,tf; 
+    t0 = cur_problem.t0.toSec(); tf = cur_problem.tf.toSec();
+    recent_optim_result.complete_solution(t0,tf,cur_problem.corridor.height);
 
     // if solved, 
-    VectorXd x_sol = recent_optim_result.solution;
+    VectorXd x_sol = recent_optim_result.solution_raw;
     is_solved = true; // whether it is corrent or not 
     nav_msgs::Path path;
     path.header.frame_id = world_frame_id;
@@ -296,6 +302,7 @@ void Wrapper::solve_chomp(VectorXd x0){
         path.poses.push_back(pose_stamped);
         pnts_on_path_marker.points.push_back(pose_stamped.pose.position);
     }    
+    // this is where the path is updated inside of class 
     current_path = path;
     std::cout<<"[CHOMP] path uploaded"<<std::endl;
 }
@@ -307,8 +314,19 @@ void Wrapper::publish_routine(){
         pub_vis_problem.publish(cur_problem.get_markers(world_frame_id));
     // if it is solved 
     if(is_solved){
+        // solved path 
         pub_path_cur_solution.publish(current_path);        
         pub_marker_pnts_path.publish(pnts_on_path_marker);
+        
+        // input and point publish 
+        ros::Time eval_t = ros::Time::now();
+        geometry_msgs::Point eval_pnt = recent_optim_result.chomp_traj.evalute_point(eval_t);
+        geometry_msgs::PointStamped eval_pntStamped; 
+        eval_pntStamped.header.frame_id = world_frame_id;
+        eval_pntStamped.header.stamp = ros::Time::now();
+        eval_pntStamped.point = eval_pnt;
+        pub_cur_control_point.publish(eval_pntStamped);
+
     }
     // esdf publish 
     if(this->map_type == 1 and is_voxblox_pub){
@@ -357,7 +375,7 @@ OptimParam Wrapper::get_default_optim_param(){
  */
 
 
-bool Wrapper::optim_traj_gen(OptimProblem problem){
+void Wrapper::optim_traj_gen(OptimProblem problem){
 
     // update and save problem 
     set_problem(problem);

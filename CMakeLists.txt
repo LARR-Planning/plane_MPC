@@ -44,6 +44,7 @@ ${catkin_INCLUDE_DIRS}
 # module1 : standalone node for test 
 add_executable(chomp_test_app
     src/chomp_main_test.cpp 
+    src/chomp_base.cpp
     src/chomp_utils.cpp
     src/chomp_subroutine.cpp
     src/chomp_ros_wrapper.cpp

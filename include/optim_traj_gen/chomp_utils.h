@@ -1,3 +1,14 @@
+
+/**
+ * @file chomp_utils.h
+ * @author JBS (junbs95@gmail.com)
+ * @brief This scirpts define necessary operation for CHOMP (root header)
+ * @version 0.1
+ * @date 2019-10-04
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 #include <eigen3/Eigen/Core>
 #include <geometry_msgs/PoseStamped.h>
 #include <nav_msgs/Path.h>
@@ -13,7 +24,9 @@
 #include <functional>
 #include <string>
 #include <chrono>
-
+#include <eigen3/Eigen/LU>
+#include <qpOASES.hpp>
+#include <numeric>
 
 // linear regression 
 struct LinearModel{
@@ -29,6 +42,4 @@ void path2vec(const nav_msgs::Path& path,std::vector<double> &xs,std::vector<dou
 void vec2path(std::vector<double> &xs,std::vector<double> &ys,std::vector<double> &zs,nav_msgs::Path& path);
 Eigen::VectorXd get_time_stamps_from_nav_path(const nav_msgs::Path& path);
 double interpolate( Eigen::VectorXd &xData, Eigen::VectorXd &yData, double x, bool extrapolate );
-
-
 

@@ -1,4 +1,4 @@
-#include "optim_traj_gen/chomp_utils.h"
+#include <optim_traj_gen/chomp_utils.h>
 
 LinearModel linear_regression(const Eigen::VectorXd& ts,const Eigen::VectorXd& xs){
     // 1st order regression on two set of vectors
@@ -86,3 +86,4 @@ double interpolate( Eigen::VectorXd &xData, Eigen::VectorXd &yData, double x, bo
     double dydx = ( yR - yL ) / ( xR - xL );                                    // gradient
     return yL + dydx * ( x - xL );                                              // linear interpolation
 }
+

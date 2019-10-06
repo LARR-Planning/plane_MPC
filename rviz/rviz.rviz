@@ -98,6 +98,16 @@ Visualization Manager:
         map: true
       Queue Size: 100
       Value: true
+    - Alpha: 1
+      Class: rviz/PointStamped
+      Color: 204; 41; 204
+      Enabled: true
+      History Length: 1
+      Name: PointStamped
+      Radius: 0.200000003
+      Topic: /chomp_test/optim_traj_gen/chomp_cur_eval_pnt
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 225; 225; 225
@@ -123,16 +133,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 8.46989155
+      Distance: 8.36865902
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 4.52737951
-        Y: 3.57571816
-        Z: 0.0155435093
+        X: 4.52730131
+        Y: 3.53723431
+        Z: 2.42068481
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
@@ -160,4 +170,4 @@ Window Geometry:
     collapsed: true
   Width: 1200
   X: 669
-  Y: 1203
+  Y: 205

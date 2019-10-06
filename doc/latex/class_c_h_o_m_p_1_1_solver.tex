@@ -1,0 +1,181 @@
+\hypertarget{class_c_h_o_m_p_1_1_solver}{}\section{C\+H\+O\+MP\+:\+:Solver Class Reference}
+\label{class_c_h_o_m_p_1_1_solver}\index{C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}}
+
+
+{\ttfamily \#include $<$chomp\+\_\+subroutine.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_c_h_o_m_p_1_1_solver_a3b4d2f2c2d41a4d5e5888da8bc321604}{Solver} ()
+\item 
+void \hyperlink{class_c_h_o_m_p_1_1_solver_a4ec3935b51f1c2a6964d4bac4c2d7fb5}{set\+\_\+problem} (Matrix\+Xd A, Vector\+Xd b, Dynamic\+E\+D\+T\+Octomap $\ast$, \hyperlink{struct_c_h_o_m_p_1_1_cost_param}{Cost\+Param})
+\item 
+void \hyperlink{class_c_h_o_m_p_1_1_solver_ad7f580ee3cd90f5115afc371c9ba0cbb}{set\+\_\+problem} (Matrix\+Xd A, Vector\+Xd b, Matrix\+Xd C, Vector\+Xd d, Dynamic\+E\+D\+T\+Octomap $\ast$, \hyperlink{struct_c_h_o_m_p_1_1_cost_param}{Cost\+Param})
+\item 
+void \hyperlink{class_c_h_o_m_p_1_1_solver_ad0169b6a4e1a1b3c182bf4c10c54d5e6}{set\+\_\+problem} (Matrix\+Xd A, Vector\+Xd b, voxblox\+::\+Esdf\+Server $\ast$, \hyperlink{struct_c_h_o_m_p_1_1_cost_param}{Cost\+Param})
+\item 
+\hyperlink{struct_c_h_o_m_p_1_1_optim_result}{Optim\+Result} \hyperlink{class_c_h_o_m_p_1_1_solver_abd3643203f287d3fb7e5b42087366272}{solve} (Vector\+Xd x0, \hyperlink{struct_c_h_o_m_p_1_1_optim_param}{Optim\+Param} optimization\+\_\+param)
+\item 
+\hyperlink{struct_c_h_o_m_p_1_1_optim_result}{Optim\+Result} \hyperlink{class_c_h_o_m_p_1_1_solver_aa22be35108ac90fe746060b6822c3a31}{solve2} (Vector\+Xd x0, \hyperlink{struct_c_h_o_m_p_1_1_optim_param}{Optim\+Param} optimization\+\_\+param)
+\begin{DoxyCompactList}\small\item\em modified optimization solving routine \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 15 of file chomp\+\_\+subroutine.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}!Solver@{Solver}}
+\index{Solver@{Solver}!C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}}
+\subsubsection[{\texorpdfstring{Solver()}{Solver()}}]{\setlength{\rightskip}{0pt plus 5cm}C\+H\+O\+M\+P\+::\+Solver\+::\+Solver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_c_h_o_m_p_1_1_solver_a3b4d2f2c2d41a4d5e5888da8bc321604}{}\label{class_c_h_o_m_p_1_1_solver_a3b4d2f2c2d41a4d5e5888da8bc321604}
+
+
+Definition at line 5 of file chomp\+\_\+subroutine.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}!set\+\_\+problem@{set\+\_\+problem}}
+\index{set\+\_\+problem@{set\+\_\+problem}!C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}}
+\subsubsection[{\texorpdfstring{set\+\_\+problem(\+Matrix\+Xd A, Vector\+Xd b, Dynamic\+E\+D\+T\+Octomap $\ast$, Cost\+Param)}{set_problem(MatrixXd A, VectorXd b, DynamicEDTOctomap *, CostParam)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+H\+O\+M\+P\+::\+Solver\+::set\+\_\+problem (
+\begin{DoxyParamCaption}
+\item[{Matrix\+Xd}]{A, }
+\item[{Vector\+Xd}]{b, }
+\item[{Dynamic\+E\+D\+T\+Octomap $\ast$}]{edf, }
+\item[{{\bf Cost\+Param}}]{cost\+\_\+param}
+\end{DoxyParamCaption}
+)}\hypertarget{class_c_h_o_m_p_1_1_solver_a4ec3935b51f1c2a6964d4bac4c2d7fb5}{}\label{class_c_h_o_m_p_1_1_solver_a4ec3935b51f1c2a6964d4bac4c2d7fb5}
+
+
+Definition at line 8 of file chomp\+\_\+subroutine.\+cpp.
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_h_o_m_p_1_1_solver_a4ec3935b51f1c2a6964d4bac4c2d7fb5_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}!set\+\_\+problem@{set\+\_\+problem}}
+\index{set\+\_\+problem@{set\+\_\+problem}!C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}}
+\subsubsection[{\texorpdfstring{set\+\_\+problem(\+Matrix\+Xd A, Vector\+Xd b, Matrix\+Xd C, Vector\+Xd d, Dynamic\+E\+D\+T\+Octomap $\ast$, Cost\+Param)}{set_problem(MatrixXd A, VectorXd b, MatrixXd C, VectorXd d, DynamicEDTOctomap *, CostParam)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+H\+O\+M\+P\+::\+Solver\+::set\+\_\+problem (
+\begin{DoxyParamCaption}
+\item[{Matrix\+Xd}]{A, }
+\item[{Vector\+Xd}]{b, }
+\item[{Matrix\+Xd}]{C, }
+\item[{Vector\+Xd}]{d, }
+\item[{Dynamic\+E\+D\+T\+Octomap $\ast$}]{edf, }
+\item[{{\bf Cost\+Param}}]{cost\+\_\+param}
+\end{DoxyParamCaption}
+)}\hypertarget{class_c_h_o_m_p_1_1_solver_ad7f580ee3cd90f5115afc371c9ba0cbb}{}\label{class_c_h_o_m_p_1_1_solver_ad7f580ee3cd90f5115afc371c9ba0cbb}
+
+
+Definition at line 23 of file chomp\+\_\+subroutine.\+cpp.
+
+\index{C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}!set\+\_\+problem@{set\+\_\+problem}}
+\index{set\+\_\+problem@{set\+\_\+problem}!C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}}
+\subsubsection[{\texorpdfstring{set\+\_\+problem(\+Matrix\+Xd A, Vector\+Xd b, voxblox\+::\+Esdf\+Server $\ast$, Cost\+Param)}{set_problem(MatrixXd A, VectorXd b, voxblox::EsdfServer *, CostParam)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+H\+O\+M\+P\+::\+Solver\+::set\+\_\+problem (
+\begin{DoxyParamCaption}
+\item[{Matrix\+Xd}]{A, }
+\item[{Vector\+Xd}]{b, }
+\item[{voxblox\+::\+Esdf\+Server $\ast$}]{esdf\+\_\+ptr, }
+\item[{{\bf Cost\+Param}}]{cost\+\_\+param}
+\end{DoxyParamCaption}
+)}\hypertarget{class_c_h_o_m_p_1_1_solver_ad0169b6a4e1a1b3c182bf4c10c54d5e6}{}\label{class_c_h_o_m_p_1_1_solver_ad0169b6a4e1a1b3c182bf4c10c54d5e6}
+
+
+Definition at line 45 of file chomp\+\_\+subroutine.\+cpp.
+
+\index{C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}!solve@{solve}}
+\index{solve@{solve}!C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}}
+\subsubsection[{\texorpdfstring{solve(\+Vector\+Xd x0, Optim\+Param optimization\+\_\+param)}{solve(VectorXd x0, OptimParam optimization_param)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Optim\+Result} C\+H\+O\+M\+P\+::\+Solver\+::solve (
+\begin{DoxyParamCaption}
+\item[{Vector\+Xd}]{x0, }
+\item[{{\bf Optim\+Param}}]{optimization\+\_\+param}
+\end{DoxyParamCaption}
+)}\hypertarget{class_c_h_o_m_p_1_1_solver_abd3643203f287d3fb7e5b42087366272}{}\label{class_c_h_o_m_p_1_1_solver_abd3643203f287d3fb7e5b42087366272}
+
+
+Definition at line 59 of file chomp\+\_\+subroutine.\+cpp.
+
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{class_c_h_o_m_p_1_1_solver_abd3643203f287d3fb7e5b42087366272_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_h_o_m_p_1_1_solver_abd3643203f287d3fb7e5b42087366272_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}!solve2@{solve2}}
+\index{solve2@{solve2}!C\+H\+O\+M\+P\+::\+Solver@{C\+H\+O\+M\+P\+::\+Solver}}
+\subsubsection[{\texorpdfstring{solve2(\+Vector\+Xd x0, Optim\+Param optimization\+\_\+param)}{solve2(VectorXd x0, OptimParam optimization_param)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Optim\+Result} C\+H\+O\+M\+P\+::\+Solver\+::solve2 (
+\begin{DoxyParamCaption}
+\item[{Vector\+Xd}]{x0, }
+\item[{{\bf Optim\+Param}}]{optim\+\_\+param}
+\end{DoxyParamCaption}
+)}\hypertarget{class_c_h_o_m_p_1_1_solver_aa22be35108ac90fe746060b6822c3a31}{}\label{class_c_h_o_m_p_1_1_solver_aa22be35108ac90fe746060b6822c3a31}
+
+
+modified optimization solving routine 
+
+momentum 
+\begin{DoxyParams}{Parameters}
+{\em x0} & \+: initial guess \\
+\hline
+{\em optim\+\_\+param} & \+: \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{struct_c_h_o_m_p_1_1_optim_result}{Optim\+Result} 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file chomp\+\_\+subroutine.\+cpp.
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_h_o_m_p_1_1_solver_aa22be35108ac90fe746060b6822c3a31_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/optim\+\_\+traj\+\_\+gen/\hyperlink{chomp__subroutine_8h}{chomp\+\_\+subroutine.\+h}\item 
+src/\hyperlink{chomp__subroutine_8cpp}{chomp\+\_\+subroutine.\+cpp}\end{DoxyCompactItemize}

@@ -1,136 +1,6 @@
-#include "optim_traj_gen/chomp_subroutine.h"
+#include <optim_traj_gen/chomp_subroutine.h>
 
-using namespace CHOMP;
-
-// designed only for solving dual problem 
-VectorXd solveqp(QP_form qp_prob,bool& is_ok){
-    is_ok = true;
-    MatrixXd Q = qp_prob.Q;
-    MatrixXd H = qp_prob.H;
-    MatrixXd Aineq = qp_prob.A;
-    MatrixXd bineq = qp_prob.b;
-    MatrixXd Aeq = qp_prob.Aeq;
-    MatrixXd beq = qp_prob.beq;
-    if(qp_prob.verbose){
-        cout<<"Q: "<<endl;
-        cout<<Q<<endl;
-        
-        cout<<"H: "<<endl;
-        cout<<H<<endl;
-            
-    }
-    USING_NAMESPACE_QPOASES;
-
-    int N_var = Q.rows();
-    int N_ineq_const = Aineq.rows();
-    int N_eq_const = Aeq.rows();    
-    int N_const = N_ineq_const + N_eq_const;
-
-    real_t H_qp[N_var*N_var];
-    real_t g[N_var];
-    real_t lb[N_var];
-
-    // cost
-    for (int i = 0;i<N_var;i++){
-        g[i] = H(0,i);            
-        for(int j = 0;j<N_var;j++)
-            H_qp[j*N_var+i] = 2*Q(i,j);
-    }
-
-   // positivity  
-    for (int i = 0; i<N_var;i++)
-        lb[i] = 0;
-
-
-    int_t nWSR = 2000;
-    
-	QProblem qp_obj(N_var,0,HST_SEMIDEF); // here the second argument was the number of rows in Ax <= b
-    //std::cout<<"hessian type: "<<qp_obj.getHessianType()<<endl;
-    Options options;
-	options.printLevel = PL_LOW;
-	qp_obj.setOptions(options);
-	qp_obj.init(H_qp,g,NULL,lb,NULL,NULL,NULL,nWSR);
-    if(qp_obj.isInfeasible()){
-        cout<<"[QP solver] warning: problem is infeasible. "<<endl;
-        is_ok = false;
-    }
-    real_t xOpt[N_var];
-    qp_obj.getPrimalSolution(xOpt);
-
-    if(not qp_obj.isSolved()){
-        cout<<"[QP solver] quadratic programming has not been solved "<<endl;
-        is_ok = false;
-    }
-    
-    VectorXd sol(N_var);
-
-    for(int n = 0; n<N_var;n++)
-        sol(n) = xOpt[n];
-
-    // cout << "solution" <<endl;
-    // cout << sol <<endl;
-    return sol;        
-}
-
-vector<geometry_msgs::Point> Corridor2D::get_corridor_intersect_points(){
-    int N_box = box_seq.size();    
-    vector<geometry_msgs::Point> intersect_pnts(N_box-1);  // the number of total intersection points 
-    for ( int box_idx = 0; box_idx < N_box-1 ; box_idx ++){
-        geometry_msgs::Point cur_intersect;
-        cur_intersect.x = (max(box_seq[box_idx].xl,box_seq[box_idx+1].xl) + min(box_seq[box_idx].xu,box_seq[box_idx+1].xu))/2;   
-        cur_intersect.y = (max(box_seq[box_idx].yl,box_seq[box_idx+1].yl) + min(box_seq[box_idx].yu,box_seq[box_idx+1].yu))/2;   
-        intersect_pnts[box_idx] = cur_intersect; 
-    }        
-    return intersect_pnts;
- }
-
-visualization_msgs::MarkerArray Corridor2D::get_corridor_markers(string world_frame_id){
-
-    visualization_msgs::MarkerArray safe_corridor_marker;
-
-    visualization_msgs::Marker safe_corridor_marker_single_base;    
-    safe_corridor_marker_single_base.header.frame_id = "world";
-    safe_corridor_marker_single_base.ns = "sf_corridor";
-    safe_corridor_marker_single_base.type = visualization_msgs::Marker::CUBE;
-    safe_corridor_marker_single_base.action = 0;
-    safe_corridor_marker_single_base.color.a = 0.5;
-    safe_corridor_marker_single_base.color.r = 170.0/255.0;
-    safe_corridor_marker_single_base.color.g = 1.0;
-    safe_corridor_marker_single_base.color.b = 1.0;    
-    const double box_dim_height = 0.5; // z scale of box
-
-    // construct marker one by one  
-    int N_box = box_seq.size();    
-
-    for (int box_idx = 0; box_idx < N_box ; box_idx ++ ){
-        double x_center,y_center; 
-        x_center = (box_seq[box_idx].xl + box_seq[box_idx].xu)/2;
-        y_center = (box_seq[box_idx].yl + box_seq[box_idx].yu)/2;
-
-        // pose     
-        safe_corridor_marker_single_base.pose.position.x = x_center;                     
-        safe_corridor_marker_single_base.pose.position.y = y_center;                     
-        safe_corridor_marker_single_base.pose.position.z = height;                     
-        safe_corridor_marker_single_base.pose.orientation.x = 0;
-        safe_corridor_marker_single_base.pose.orientation.y = 0;
-        safe_corridor_marker_single_base.pose.orientation.z = 0;
-        safe_corridor_marker_single_base.pose.orientation.w = 1;
-
-       // scale 
-        safe_corridor_marker_single_base.scale.x = abs(box_seq[box_idx].xl - box_seq[box_idx].xu);
-        safe_corridor_marker_single_base.scale.y = abs(box_seq[box_idx].yl - box_seq[box_idx].yu);
-        safe_corridor_marker_single_base.scale.z = box_dim_height;
-        
-        // index
-        safe_corridor_marker_single_base.id = box_idx; 
-
-        // push back 
-        safe_corridor_marker.markers.push_back(safe_corridor_marker_single_base);
-    }
-
-    return safe_corridor_marker;
-}
-
+namespace CHOMP{
 
 Solver::Solver(){};
 
@@ -286,7 +156,7 @@ OptimResult Solver::solve(VectorXd x0, OptimParam optim_param){
 
     OptimResult optim_result;
     optim_result.result_verbose = optim_info;
-    optim_result.solution = x;
+    optim_result.solution_raw = x;
     return optim_result;
 }
 
@@ -392,7 +262,7 @@ OptimResult Solver::solve2(VectorXd x0, OptimParam optim_param){
 
     OptimResult optim_result;
     optim_result.result_verbose = optim_info;
-    optim_result.solution = x;
+    optim_result.solution_raw = x;
     optim_result.distance_min = dist_min;
     return optim_result;
 }
@@ -714,4 +584,5 @@ visualization_msgs::MarkerArray OptimProblem::get_markers(string world_frame_id)
     markers.markers.push_back(get_initial_guess_marker(world_frame_id));
 
     return markers;
+}
 }

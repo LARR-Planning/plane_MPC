@@ -17,7 +17,8 @@ namespace CHOMP{
             ros::Publisher pub_path_cur_solution; // publisher for path 
             ros::Publisher pub_vis_problem; // corridor  
             ros::Publisher pub_marker_pnts_path; // pnts on the path 
-            
+            ros::Publisher pub_cur_control_point; // evaluated point at the current time (x_d(t) y_d(t)) 
+
             visualization_msgs::Marker pnts_on_path_marker;
             
             // map 
@@ -37,10 +38,13 @@ namespace CHOMP{
             bool is_voxblox_pub = true; 
             bool is_problem_exist = false;
             bool is_solved = false;
+            
+            
             // chomp solver 
             Solver solver;
             // current problem 
             OptimProblem cur_problem;
+
 
              // optimization subroutine (private)
             void build_matrix(MatrixXd &M,VectorXd &h,MatrixXd &C, MatrixXd &d ,Corridor2D corridor,geometry_msgs::Point start,geometry_msgs::Point goal,OptimParam* param = NULL);
@@ -68,7 +72,7 @@ namespace CHOMP{
             double get_ground_height() {return ground_rejection_height;};
 
             // solve            
-            bool optim_traj_gen(OptimProblem problem);
+            void optim_traj_gen(OptimProblem problem);
 
     };
 }
