@@ -168,6 +168,7 @@ struct OptimResult{
 // components of one chomp problem 
 struct OptimProblem{
     geometry_msgs::Point start;
+    geometry_msgs::Point start_velocity;
     ros::Time t0; // raw ros_time 
     geometry_msgs::Point goal;
     ros::Time tf; // raw ros_time 

@@ -50,7 +50,7 @@ namespace CHOMP{
 
 
              // optimization subroutine (private)
-            void build_matrix(MatrixXd &M,VectorXd &h,MatrixXd &C, MatrixXd &d ,Corridor2D corridor,geometry_msgs::Point start,geometry_msgs::Point goal,OptimParam* param = NULL);
+            void build_matrix(MatrixXd &M,VectorXd &h,MatrixXd &C, MatrixXd &d ,Corridor2D corridor,geometry_msgs::Point start,geometry_msgs::Point start_velocity,geometry_msgs::Point goal,double horizon,OptimParam* param = NULL);
             VectorXd prepare_chomp(MatrixXd M,VectorXd h,MatrixXd C,MatrixXd d,Corridor2D corridor,geometry_msgs::Point start,geometry_msgs::Point goal,OptimParam* param = NULL );
             void solve_chomp(VectorXd x0);
 

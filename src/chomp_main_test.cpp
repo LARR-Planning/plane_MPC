@@ -35,7 +35,7 @@ int main(int argc, char** argv){
     box2.xl = 4.0; box2.yl = 1.5; box2.xu = 5.0; box2.yu = 3.5; box_seq.push_back(box2);
     box3.xl = 4.0; box3.yl = 3.0; box3.xu = 5.5; box3.yu = 5.5; box_seq.push_back(box3);
 
-    int N1,N2,N3; N1 = 8,N2 = 9, N3 = 10;    
+    int N1,N2,N3; N1 = 10, N2 = 9, N3 = 10;    
     box_alloc_seq.push_back(N1);
     box_alloc_seq.push_back(N2);
     box_alloc_seq.push_back(N3);
@@ -48,15 +48,16 @@ int main(int argc, char** argv){
     Corridor2D sample_corridor(box_seq,box_alloc_seq,corridor_height); // corridor 
     geometry_msgs::Point start;  start.x = 3.5; start.y = 0.5; // start 
     geometry_msgs::Point goal; goal.x = 5; goal.y = 5; // goal 
-
+    geometry_msgs::Point start_velocity; start_velocity.x = 0.3; start_velocity.y = 0.2; 
     // problem construction 
     CHOMP::OptimProblem chomp_problem;
     chomp_problem.corridor = sample_corridor;
     chomp_problem.start = start; 
+    chomp_problem.start_velocity = start_velocity; 
     chomp_problem.goal= goal; 
     chomp_problem.t0 = t0;  
     chomp_problem.tf = tf;
-    
+     
     // trajectory generation  
     chomp_wrapper.optim_traj_gen(chomp_problem);
 

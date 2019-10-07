@@ -94,13 +94,16 @@ void Wrapper::set_problem(OptimProblem problem){
  * @param prior_points points of length No<=N
  * @param gamma weight factor for prior points 
  * @param goal goal point 
- * @param N total time index
+ * @param horizon : tf - t0  
  */
-void Wrapper::build_matrix(MatrixXd &M,VectorXd &h, MatrixXd & C,MatrixXd & d, Corridor2D corridor,geometry_msgs::Point start,geometry_msgs::Point goal,OptimParam* param){
+void Wrapper::build_matrix(MatrixXd &M,VectorXd &h, MatrixXd & C,MatrixXd & d, Corridor2D corridor,geometry_msgs::Point start,geometry_msgs::Point start_velocity,geometry_msgs::Point goal,double horizon,OptimParam* param){
 
     int N = accumulate(corridor.box_alloc_seq.begin(),corridor.box_alloc_seq.end(),0)-(corridor.box_seq.size()-1); // number of points to be optimized (dim * N = tot number of variable in optimization)
     int N_box_constraint_blck = accumulate(corridor.box_alloc_seq.begin(),corridor.box_alloc_seq.end(),0); // number of points to be optimized (dim * N = tot number of variable in optimization)
-
+    double dt = horizon/(N-1); 
+    double vx0 = start_velocity.x;  
+    double vy0 = start_velocity.y;  
+    
     // init     
     // if external parameter is given 
     if(param == NULL)
@@ -118,25 +121,31 @@ void Wrapper::build_matrix(MatrixXd &M,VectorXd &h, MatrixXd & C,MatrixXd & d, C
      **/
 
     // here, A,b is |Ax-b|^2
-    int m_row = ((N-1) + (N-2) + 2) * dim;  // prior points + velocity + acceleration + goal
+    int m_row = ((N-1) + (N-2) + 3) * dim;  // velocity + acceleration + goal
 
     MatrixXd A = MatrixXd(m_row,dim*N);
     VectorXd b = VectorXd(m_row);
     
-   // 1. start and goal fitting  
-    MatrixXd A0 = MatrixXd::Zero(dim*(2),dim*N);
-    VectorXd b0 = VectorXd::Zero(dim*(2));
-
+   // 1. start (point and velocity) and goal fitting (1+1+1 = 3)  
+    MatrixXd A0 = MatrixXd::Zero(dim*(3),dim*N);
+    VectorXd b0 = VectorXd::Zero(dim*(3));
+    // end point 
     A0.block(0,dim*(N-1),dim,dim) =  gamma*(VectorXd::Ones(dim)).asDiagonal();     
     b0.block(0,0,dim,1) << gamma*goal.x, 
                                 gamma*goal.y;       
-    
+
+    // start point   
     A0.block(dim,0,dim,dim) = gamma*(VectorXd::Ones(dim)).asDiagonal();     
     b0.block(dim,0,dim,1) << gamma*start.x, 
                                 gamma*start.y;       
+    // start velocity     
+    A0.block(2*dim,0,1,3) << -gamma*1,0,gamma*1;    
+    A0.block(2*dim+1,1,1,3) << -gamma*1,0,gamma*1;    
 
+    b0.block(2*dim,0,dim,1) << gamma*vx0*dt,
+                                gamma*vy0*dt;
 
-    // 2. 1st order derivatives  
+    // 2. minimization of 1st order derivatives  
     MatrixXd A1 = MatrixXd::Zero(dim*(N-1),dim*N);
     VectorXd b1= VectorXd::Zero(dim*(N-1));
     
@@ -409,10 +418,13 @@ void Wrapper::optim_traj_gen(OptimProblem problem){
     MatrixXd M,C,d; VectorXd h;
     Corridor2D corridor = problem.corridor;
     geometry_msgs::Point start = problem.start;
+    geometry_msgs::Point start_velocity = problem.start_velocity;
     geometry_msgs::Point goal= problem.goal;
 
-    build_matrix(M,h,C,d,corridor,start,goal);
+    double horizon = (problem.tf - problem.t0).toSec(); // temporal information is required for velocity consideration
+    build_matrix(M,h,C,d,corridor,start,start_velocity,goal,horizon);
     VectorXd x0 = prepare_chomp(M,h,C,d,corridor,start,goal);
     solve_chomp(x0);        
-
 }
+
+
